@@ -15,7 +15,7 @@ from langchain_core.output_parsers import StrOutputParser
 from chromadb.utils.data_loaders import ImageLoader
 from matplotlib import pyplot as plt
 
-# Suppress warnings
+# Surpress Warnings
 warnings.filterwarnings("ignore")
 load_dotenv()
 
@@ -23,7 +23,7 @@ load_dotenv()
 st.title("Flower Arrangement Query and Image Retrieval Service")
 
 
-# Load dataset from Hugging Face
+# Loading dataset from Hugging Face
 @st.cache_data
 def load_flower_dataset():
     return load_dataset("huggan/flowers-102-categories")
@@ -31,7 +31,7 @@ def load_flower_dataset():
 
 ds = load_flower_dataset()
 
-# === Define ChromaDB for image search ===
+# Chroma_db for Vector DataBase
 chroma_client = chromadb.PersistentClient(path="./data/flower.db")
 image_loader = ImageLoader()
 embedding_function = OpenCLIPEmbeddingFunction()
@@ -42,7 +42,7 @@ flower_collection = chroma_client.get_or_create_collection(
 )
 
 
-# === Helper function to display images ===
+# Helper function to display images
 def show_image_from_uri(uri, width=200):
     img = Image.open(uri)
     st.image(img, width=width)
